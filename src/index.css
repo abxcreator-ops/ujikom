@@ -1,0 +1,87 @@
+/* 1. Arahan dasar untuk Tailwind CSS */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 2. Gaya default untuk seluruh aplikasi */
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+/* 3. Gaya khusus untuk fungsi cetak/print laporan */
+@media print {
+  body {
+    background-color: white;
+  }
+
+  /* Sembunyikan semua elemen kecuali area yang bisa dicetak */
+  body * {
+    visibility: hidden;
+  }
+
+  #printableArea,
+  #printableArea * {
+    visibility: visible;
+  }
+
+  #printableArea {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 20px;
+    font-size: 12px;
+  }
+
+  /* Sembunyikan elemen yang memiliki kelas print:hidden saat mencetak */
+  .print\:hidden {
+    display: none !important;
+  }
+
+  /* Atur ukuran halaman menjadi A4 */
+  @page {
+    size: A4;
+    margin: 20mm;
+  }
+}
+
+/* 4. Gaya kustom untuk radio button di form */
+.radio-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.radio-label {
+  margin-left: 0.5rem;
+}
+
+.radio-custom {
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid #d1d5db;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.radio-custom .radio-dot {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  background-color: transparent;
+}
+
+input[type="radio"]:checked+.radio-custom {
+  border-color: #4f46e5;
+}
+
+input[type="radio"]:checked+.radio-custom .radio-dot {
+  background-color: #4f46e5;
+}
+
+/* 5. Menghilangkan panah default pada elemen accordion (<details>) */
+summary::-webkit-details-marker {
+  display: none;
+}
